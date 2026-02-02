@@ -1,5 +1,6 @@
 The document presents a structured framework for diagnosing and improving supply chain performance, focusing on challenges such as inconsistent lead times, shipping delays, and declining profit margins. Using historical order and freight records, the analysis investigates operational patterns across distribution routes, product categories, and customer segments to uncover the root causes of elevated logistics costs and unreliable delivery performance.
 The methodology integrates advanced analytical techniques, including regression models to estimate freight expenses and identify cost drivers, as well as KMeans clustering to segment destinations, products, or operational behaviors into meaningful groups. These methods enable clearer visibility into inefficiencies, such as routes with persistent delays, product lines with disproportionate freight costs, or clusters of orders that contribute most to margin erosion.
 By combining descriptive analytics with machine learning, the project establishes a data‑driven foundation for operational decision‑making. The insights generated support targeted interventions in inventory planning, transportation management, and supplier coordination. Ultimately, the document serves as a strategic roadmap for enhancing on‑time delivery reliability, optimizing logistics spending, and improving overall profit margins through evidence‑based supply chain management.
-Citation
+
+# Citation
 Constante, F., Silva, F., & Pereira, A. (2019). DataCo SMART Supply Chain for Big Data Analysis (Version 5) [Dataset]. Mendeley Data.

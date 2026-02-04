@@ -17,8 +17,8 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           # 1. Identify yourself to Git
-          git config --global user.email "smilesimile@example.com"
-          git config --global user.name "smilesimile"
+          git config --global user.email "r.phornnapas@gmail.com"
+          git config --global user.name "rphornnapas"
           
           # 2. Create a temporary branch that has NO history (an 'orphan')
           git checkout --orphan temp-branch

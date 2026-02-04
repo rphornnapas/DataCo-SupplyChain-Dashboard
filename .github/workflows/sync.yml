@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          lfs: true # Tells GitHub to pull the LFS files
+          lfs: true
 
       - name: Install Git LFS
         run: git lfs install
@@ -20,5 +20,8 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          # Use the token to push
-          git push --force https://smilesimile:$HF_TOKEN@huggingface.co/spaces/smilesimile/dc-supplychain main
+          # This version handles LFS tracking during the push
+          git config --global user.email "smilesimile@example.com"
+          git config --global user.name "smilesimile"
+          git remote add hf https://smilesimile:$HF_TOKEN@huggingface.co/spaces/smilesimile/dc-supplychain
+          git push --force hf main

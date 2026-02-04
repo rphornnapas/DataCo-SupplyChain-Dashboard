@@ -2,14 +2,23 @@ name: Sync to Hugging Face
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+
 jobs:
-  deploy:
+  sync-to-hub:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Push to HF
+          lfs: true # Tells GitHub to pull the LFS files
+
+      - name: Install Git LFS
+        run: git lfs install
+
+      - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push --force https://smilesimile:$HF_TOKEN@huggingface.co/spaces/smilesimile/dc-supplychain main
+        run: |
+          # Use the token to push
+          git push --force https://smilesimile:$HF_TOKEN@huggingface.co/spaces/smilesimile/dc-supplychain main

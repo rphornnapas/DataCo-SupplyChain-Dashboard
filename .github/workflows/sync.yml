@@ -1,31 +1,5 @@
-name: Sync to Hugging Face
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-
-jobs:
-  sync-to-hub:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Push Fresh History
+- name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          # 1. Identify yourself to Git
-          git config --global user.email "r.phornnapas@gmail.com"
-          git config --global user.name "rphornnapas"
-          
-          # 2. Create a temporary branch that has NO history (an 'orphan')
-          git checkout --orphan temp-branch
-          
-          # 3. Add only the current files (the ones where the big file is DELETED)
-          git add .
-          git commit -m "Initial sync with cleaned history"
-          
-          # 4. Force push this 'clean' snapshot to Hugging Face's main branch
-          git push --force https://smilesimile:$HF_TOKEN@huggingface.co/spaces/smilesimile/dc-supplychain temp-branch:main
+          git push --force https://smilesimile:$HF_TOKEN@huggingface.co/spaces/smilesimile/dc-supplychain main

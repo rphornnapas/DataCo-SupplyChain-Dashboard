@@ -11,17 +11,21 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          lfs: true
 
-      - name: Install Git LFS
-        run: git lfs install
-
-      - name: Push to hub
+      - name: Push Fresh History
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          # This version handles LFS tracking during the push
+          # 1. Identify yourself to Git
           git config --global user.email "smilesimile@example.com"
           git config --global user.name "smilesimile"
-          git remote add hf https://smilesimile:$HF_TOKEN@huggingface.co/spaces/smilesimile/dc-supplychain
-          git push --force hf main
+          
+          # 2. Create a temporary branch that has NO history (an 'orphan')
+          git checkout --orphan temp-branch
+          
+          # 3. Add only the current files (the ones where the big file is DELETED)
+          git add .
+          git commit -m "Initial sync with cleaned history"
+          
+          # 4. Force push this 'clean' snapshot to Hugging Face's main branch
+          git push --force https://smilesimile:$HF_TOKEN@huggingface.co/spaces/smilesimile/dc-supplychain temp-branch:main
